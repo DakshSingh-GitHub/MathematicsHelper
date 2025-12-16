@@ -2,6 +2,7 @@
 ## How to Use:
 1. I'll Add the library *.jar as a Pre-Release version on `versions`
 2. Go to your IDE and import this *.jar file as external library refrences
+3. To create a jar package, `jar cf mathematics.jar .`
 
 ## Project Classes
 
