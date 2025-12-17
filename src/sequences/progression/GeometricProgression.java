@@ -111,13 +111,13 @@ public class GeometricProgression {
         } else if (this.isEmpty==false && this.isInitialized==true) {
             if (this.sequence.get(this.sequence.size()-1)*this.common_ratio == n) {
                 this.sequence.add(n);
-            } else { IO.println("The number " + n + " doesn't belong to the series"); }
+            } else { System.out.println("The number " + n + " doesn't belong to the series"); }
         }
     }
 
     public void insertTillNthTerm(int n) {
         if ((this.isEmpty == true && this.isInitialized == false) || (this.isEmpty == false && this.isInitialized == false)) {
-            IO.println("Can't add on a non-initialized AP");
+            System.out.println("Can't add on a non-initialized AP");
         } else {
             int sizeOfSequence = this.sequence.size();
             if (sizeOfSequence < n) {
@@ -129,13 +129,13 @@ public class GeometricProgression {
                 }
                 numbersOfInsertion.forEach(e -> { this.sequence.add(e); });
             } 
-            else { IO.println("The new insertion range should be greater than last: " + sizeOfSequence); }
+            else { System.out.println("The new insertion range should be greater than last: " + sizeOfSequence); }
         }
     }
 
     // This is a safe insert function, it doesn't show any error because the next insertion term is automated
     public void safeInsertNextTerm() {
-        if (this.isEmpty == true && this.isInitialized == false) IO.println("Can't addd on a non-initialized GP");
+        if (this.isEmpty == true && this.isInitialized == false) System.out.println("Can't addd on a non-initialized GP");
         else {
             double currentLastTerm = this.sequence.get(this.sequence.size()-1);
             double nextTerm = currentLastTerm * this.common_ratio;
@@ -198,7 +198,7 @@ public class GeometricProgression {
 
     public double sumOfGP() {
         double sum = 0.0;
-        if (this.isEmpty == true) { IO.println("Sum can't be initialized on an empty GP"); }
+        if (this.isEmpty == true) { System.out.println("Sum can't be initialized on an empty GP"); }
         else {
             double n = this.sequence.size();
             double a = this.sequence.get(0);
@@ -212,7 +212,7 @@ public class GeometricProgression {
     // Returns sum of the geometric progression till any specified number/place
     public double projectedSumOfGP(int n) {
         double sum = 0.0;
-        if (this.isEmpty == true) { IO.println("Sum can't be initialized on an empty GP"); }
+        if (this.isEmpty == true) { System.out.println("Sum can't be initialized on an empty GP"); }
         else {
             double a = this.sequence.get(0);
             double r = this.common_ratio;

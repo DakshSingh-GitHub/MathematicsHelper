@@ -12,7 +12,7 @@ public class Line2D {
     double slope;
     double x_intercept;
     double y_intercept; 
-    ArrayList<ArrayList<Double>> pointsOnLine = new ArrayList<>();
+    ArrayList<Point> pointsOnLine = new ArrayList<>();
     String equationOfLine;
     String generalEquationOfLine;
 
@@ -35,8 +35,8 @@ public class Line2D {
         }
 
         
-        pointsOnLine.add(p1.getCoordinates2D());
-        pointsOnLine.add(p2.getCoordinates2D());
+        pointsOnLine.add(p1);
+        pointsOnLine.add(p2);
     }
 
     public Line2D(Point p1, double slope) {
@@ -56,12 +56,12 @@ public class Line2D {
             generalEquationOfLine = "x/" + this.x_intercept + " = 1";
         }
 
-        pointsOnLine.add(p1.getCoordinates2D());
+        pointsOnLine.add(p1);
     }
 
     public void updateSlope(double slope) {
         pointsOnLine.clear();
-        pointsOnLine.add(p1.getCoordinates2D());
+        pointsOnLine.add(p1);
         this.slope = slope;
         this.y_intercept = p1.y - slope*p1.x;
         this.x_intercept = -this.y_intercept / slope;
@@ -78,8 +78,8 @@ public class Line2D {
     }
 
     public void addPointOnLine(Point p) {
-        if (p.y == this.slope*p.x + this.y_intercept) { pointsOnLine.add(p.getCoordinates2D()); }
-        else { IO.println("This Point (" + p.x + ", " + p.y + ") doesn't lie on the line"); }
+        if (p.y == this.slope*p.x + this.y_intercept) { pointsOnLine.add(p); }
+        else { System.out.println("This Point (" + p.x + ", " + p.y + ") doesn't lie on the line"); }
     }
 
     public Map<String, String> LineEquations() { 
@@ -92,5 +92,11 @@ public class Line2D {
         return res;
     }
 
-    public ArrayList<ArrayList<Double>> getUsedPointsOnLine() { return this.pointsOnLine; }
+    public ArrayList<Point> getUsedPointsOnLine() { return this.pointsOnLine; }
+
+    public double distanceFromPoint(Point p) {
+        double numerator = Math.abs(this.slope*p.x - p.y + this.y_intercept);
+        double denominator = Math.sqrt(this.slope*this.slope + 1);
+        return numerator / denominator;
+    }
 }

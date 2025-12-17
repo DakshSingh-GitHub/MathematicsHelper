@@ -75,14 +75,14 @@ public class ArithmaticProgression {
         } else {
             double lastnumber = this.sequence.get(this.sequence.size() - 1);
             if (number - lastnumber == this.difference) { this.sequence.add(number); }
-            else { IO.println("The number " + number + " doesn't match the AP"); }
+            else { System.out.println("The number " + number + " doesn't match the AP"); }
         }
     }
 
     // Inserts terms to the nth term without error because user only has to specify of what lenth the array should be, and other stuff is handled within the code. Inserts till the size of the sequence gets "N"
     public void insertTillNthTerm(int n) {
         if ((this.isEmpty == true && this.isInitialized == false) || (this.isEmpty == false && this.isInitialized == false)) {
-            IO.println("Can't add on a non-initialized AP");
+            System.out.println("Can't add on a non-initialized AP");
         } else {
             int sizeOfSequence = this.sequence.size();
             if (sizeOfSequence < n) {
@@ -94,7 +94,7 @@ public class ArithmaticProgression {
                 }
                 numbersOfInsertion.forEach(e -> { this.sequence.add(e); });
             }
-            else { IO.println("The new insertion range should be greater than current size: " + sizeOfSequence); }
+            else { System.out.println("The new insertion range should be greater than current size: " + sizeOfSequence); }
         }
     }
 
@@ -136,7 +136,7 @@ public class ArithmaticProgression {
     
     // Returns no error while inserting as it predicts next term, properly and inserts it, without the user having to define the term so prevents error
     public void safeInsertNextTerm() {
-        if (this.isEmpty) { IO.println("No series has been specified"); }
+        if (this.isEmpty) { System.out.println("No series has been specified"); }
         else {
             double lastnumber = this.sequence.get(this.sequence.size() - 1);
             double nextnumber = lastnumber + this.difference;
@@ -146,22 +146,22 @@ public class ArithmaticProgression {
 
     // Renamed from predictNextNumber to predictTerm
     public void predictTerm() {
-        if (this.isEmpty) { IO.println("No series has been specified"); }
+        if (this.isEmpty) { System.out.println("No series has been specified"); }
         else {
             double lastnumber = this.sequence.get(this.sequence.size() - 1);
             double nextnumber = lastnumber + this.difference;
-            IO.println("The next number in the AP is (Not added to AP): " + nextnumber);
+            System.out.println("The next number in the AP is (Not added to AP): " + nextnumber);
         }
     }
 
     // Added a method predictTerm(int n)
     public void predictTerm(int n) {
-        if (this.isEmpty) { IO.println("No series has been specified"); }
+        if (this.isEmpty) { System.out.println("No series has been specified"); }
         else {
             double first_number = this.firstNumber;
             double difference = this.difference;
             double nextnumber = first_number + (n-1)*difference;
-            IO.println("The next number in the AP is (Not added to AP): " + nextnumber);
+            System.out.println("The next number in the AP is (Not added to AP): " + nextnumber);
         }
     }
 
@@ -176,7 +176,7 @@ public class ArithmaticProgression {
 
     public double sumOfAP() {
         double sum =  0;
-        if (this.isEmpty) { IO.println("Sum can't be initialized on an empty AP"); }
+        if (this.isEmpty) { System.out.println("Sum can't be initialized on an empty AP"); }
         else {
             double n = this.sequence.size();
             sum = (n/2) * (2*this.firstNumber + (n-1)*this.difference);  
@@ -186,7 +186,7 @@ public class ArithmaticProgression {
 
     public double projectedSumOfAP(int n) {
         double sum =  0;
-        if (this.isEmpty) { IO.println("Sum can't be initialized on an empty AP"); }
+        if (this.isEmpty) { System.out.println("Sum can't be initialized on an empty AP"); }
         else {
             sum = (n/2) * (2*this.firstNumber + (n-1)*this.difference);  
         }
