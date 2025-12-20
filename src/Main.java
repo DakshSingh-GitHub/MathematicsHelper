@@ -3,11 +3,9 @@ import pnc.solver.PncSolver;
 
 public class Main {
     public static void main(String[] args) {
-        Combination com = new Combination(15, 11);
-        System.out.println(com.getCombination());
+        Combination c1 = new Combination(28, 3);
+        Combination com = new Combination(7, 3);
+        System.out.println(c1.getCombination() - 8*com.getCombination());
 
-        PncSolver solver = new PncSolver(5, "combination");
-        long permResult = solver.calculateCombination(3);
-        System.out.println(permResult);
     }
 }
