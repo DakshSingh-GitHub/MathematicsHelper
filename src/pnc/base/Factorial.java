@@ -1,7 +1,7 @@
 package pnc.base;
 
 public class Factorial {
-    int fact;
+    long fact;
 
     public Factorial(int num) {
         int fact = 1;
@@ -9,5 +9,5 @@ public class Factorial {
         this.fact = fact;
     }
 
-    public int getFactorial() { return this.fact; }
+    public long getFactorial() { return this.fact; }
 }

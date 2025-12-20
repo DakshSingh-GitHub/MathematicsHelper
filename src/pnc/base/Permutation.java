@@ -8,8 +8,8 @@ public class Permutation {
     public Permutation(int totalobjectsN, int waystorearrangeC) {
         this.totalobjectsN = totalobjectsN;
         this.waystorearrangeC = waystorearrangeC;
-        int factorialN = (new Factorial(totalobjectsN)).getFactorial();
-        int factorialNC = (new Factorial(totalobjectsN - waystorearrangeC)).getFactorial();
+        long factorialN = (new Factorial(totalobjectsN)).getFactorial();
+        long factorialNC = (new Factorial(totalobjectsN - waystorearrangeC)).getFactorial();
         this.permutations = factorialN / factorialNC;
         this.hasConstantC = true;
     }
@@ -17,8 +17,8 @@ public class Permutation {
 
     public long permuteWithVariableValue(int value) {
         if (!this.hasConstantC) {
-            int factorialN = (new Factorial(totalobjectsN)).getFactorial();
-            int factorialNC = (new Factorial(totalobjectsN - value)).getFactorial();
+            long factorialN = (new Factorial(totalobjectsN)).getFactorial();
+            long factorialNC = (new Factorial(totalobjectsN - value)).getFactorial();
             this.permutations = factorialN / factorialNC;
             return this.permutations;
         } else return -1; // Indicating that permutations were already calculated

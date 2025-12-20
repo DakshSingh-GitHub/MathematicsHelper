@@ -1,5 +1,8 @@
 package pnc.solver;
 
+import pnc.base.Combination;
+import pnc.base.Permutation;
+
 public class PncSolver {
     int totalobjectsN;
     String method;
@@ -56,16 +59,16 @@ public class PncSolver {
                 "2. Combination: Selecting 3 team members from a group of 5.");
     }
 
-    public long calculatePermutation() {
+    public long calculatePermutation(int waystorearrangeC) {
         if (this.method == "permutation") {
-            int factorialN = (new pnc.base.Factorial(this.totalobjectsN)).getFactorial();
-            return factorialN;
+            Permutation permutationCalculator = new Permutation(this.totalobjectsN, waystorearrangeC);
+            return permutationCalculator.getPermutations();
         } else return -1;
     }
 
     public long calculateCombination(int waystoselectC) {
         if (this.method == "combination") {
-            pnc.base.Combination combinationCalculator = new pnc.base.Combination(this.totalobjectsN, waystoselectC);
+            Combination combinationCalculator = new Combination(this.totalobjectsN, waystoselectC);
             return combinationCalculator.getCombination();
         } else return -1;
     }
