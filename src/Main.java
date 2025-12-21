@@ -1,11 +1,10 @@
-import pnc.base.*;
-import pnc.solver.PncSolver;
+import pnc.solver.DictionaryIndexer;
 
 public class Main {
     public static void main(String[] args) {
-        Combination c1 = new Combination(28, 3);
-        Combination com = new Combination(7, 3);
-        System.out.println(c1.getCombination() - 8*com.getCombination());
-
+        DictionaryIndexer indexer = new DictionaryIndexer("");
+        String wordToRank = "GOOGLE";
+        long rank = indexer.rankWord(wordToRank);
+        System.out.println("The rank of the word '" + wordToRank + "' is: " + rank);
     }
 }

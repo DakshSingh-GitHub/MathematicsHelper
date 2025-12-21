@@ -10,4 +10,10 @@ public class Factorial {
     }
 
     public long getFactorial() { return this.fact; }
+
+    public long getFactorial (int num) {
+        int fact = 1;
+        for (int i = 1; i <= num; i++) fact *= i;
+        return fact;
+    }
 }
