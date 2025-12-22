@@ -1,10 +1,9 @@
-import pnc.solver.DictionaryIndexer;
+import geometry.shapes.Parabola;
+import geometry.base.Point;
 
 public class Main {
     public static void main(String[] args) {
-        DictionaryIndexer indexer = new DictionaryIndexer("");
-        String wordToRank = "GOOGLE";
-        long rank = indexer.rankWord(wordToRank);
-        System.out.println("The rank of the word '" + wordToRank + "' is: " + rank);
+        Parabola p = new Parabola(new Point(0, 0), 1, "horizontal");
+        System.out.println(p.getEquation());
     }
 }
