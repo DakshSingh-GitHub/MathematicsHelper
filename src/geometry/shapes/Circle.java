@@ -10,6 +10,7 @@ public class Circle {
     double radius;
     private String equationOfCircle;
     private ArrayList<Point> pointsOnCircle = new ArrayList<>();
+    private ArrayList<ArrayList<Point>> removedHeap = new ArrayList<>();
 
     public Circle(Point center) {
         this.center = center;
@@ -48,8 +49,18 @@ public class Circle {
         } else {
             this.equationOfCircle = "(x-(" + this.center.x + "))^2 + (y-(" + this.center.y + "))^2 = " + (this.radius * this.radius);
         }
+        ArrayList<Point> remh = new ArrayList<>();
+        for (Point p : this.pointsOnCircle) remh.add(p);
+        this.removedHeap.add(remh);
         this.pointsOnCircle.clear();
         this.pointsOnCircle.add(secondPoint);
+    }
+
+    public void clearPointsOnCircle() {
+        ArrayList<Point> remh = new ArrayList<>();
+        for (Point p : this.pointsOnCircle) remh.add(p);
+        this.removedHeap.add(remh);
+        this.pointsOnCircle.clear();
     }
 
     public void addPointonCircle(Point p) {
@@ -86,10 +97,8 @@ public class Circle {
         }
     }
 
-    public ArrayList<Point> getUsedPointsOnCircle() {
-        return this.pointsOnCircle;
-    }
-
+    public ArrayList<Point> getUsedPointsOnCircle() { return this.pointsOnCircle; }
+    public ArrayList<ArrayList<Point>> getRemovedHeap() { return this.removedHeap; }
     public String getEquationOfCircle() { 
         String res = "";
         if (this.isRadiusGiven) {

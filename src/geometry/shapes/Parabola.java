@@ -11,6 +11,7 @@ public class Parabola {
     Point vertex;
     boolean isParaboalMade = false;
     ArrayList<Point> pointsOnParabola = new ArrayList<>();
+    ArrayList<ArrayList<Point>> removedHeap = new ArrayList<>();
 
     public Parabola (Point vertex, double a, String type) {
         this.vertex = vertex;
@@ -19,6 +20,7 @@ public class Parabola {
         this.type = type;
         this.equation = generateEquation();
         this.isParaboalMade = true;
+        this.pointsOnParabola.add(vertex);
     }
 
     public Parabola(Point vertex) {
@@ -27,6 +29,7 @@ public class Parabola {
         this.latus_ractum = 0;
         this.equation = "N/A";
         this.isParaboalMade = false;
+        this.pointsOnParabola.add(vertex);
     }
 
     private String generateEquation() {
@@ -64,13 +67,38 @@ public class Parabola {
         this.latus_ractum = 4 * a;
         this.equation = generateEquation();
         this.isParaboalMade = true;
+        ArrayList<Point> remh = new ArrayList<>();
+        for (Point p : this.pointsOnParabola) remh.add(p);
+        this.removedHeap.add(remh);
+        Point temp_vert = new Point(this.vertex.x, this.vertex.y);
+        this.pointsOnParabola.clear();
+        this.pointsOnParabola.add(temp_vert);
     }
 
-    public String getEquation() {
-        return this.equation;
+    public void clearPointsOnParabola() {
+        ArrayList<Point> remh = new ArrayList<>();
+        for (Point p : this.pointsOnParabola) remh.add(p);
+        this.removedHeap.add(remh);
+        Point temp_vert = new Point(this.vertex.x, this.vertex.y);
+        this.pointsOnParabola.clear();
+        this.pointsOnParabola.add(temp_vert);
     }
 
-    public ArrayList<Point> getUsedPointsOnParabola() {
-        return this.pointsOnParabola;
+    public void addPointOnParabola(Point point) {
+        if (this.isParaboalMade) {
+            double x = point.x - this.vertex.x;
+            double y = point.y - this.vertex.y;
+            if (this.type.toLowerCase() == "horizontal") {
+                if ((y*y - this.latus_ractum*x) == 0) this.pointsOnParabola.add(point);
+                else System.err.println("This Point (" + x + ", " + y + ") cannot be added, doesn't lie on parabola");
+            } else if (this.type.toLowerCase() == "vertical") {
+                if ((x*x - this.latus_ractum*y) == 0) this.pointsOnParabola.add(point);
+                else System.err.println("This Point (" + x + ", " + y + ") cannot be added, doesn't lie on parabola");
+            }
+        } else System.err.println("Parabola has not been initiated");
     }
+
+    public ArrayList<Point> getUsedPointsOnParabola() { return this.pointsOnParabola; }
+    public ArrayList<ArrayList<Point>> getRemovedHeap() { return this.removedHeap; }
+    public String getEquation() { return this.equation; }
 }
