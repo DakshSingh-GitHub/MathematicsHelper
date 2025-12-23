@@ -7,9 +7,9 @@ import java.util.Map;
 public class Line2D {
     private Point p1;
     Point p2;
-    public double slope;
-    public double x_intercept;
-    public double y_intercept; 
+    private double slope;
+    private double x_intercept;
+    private double y_intercept; 
     public ArrayList<Point> pointsOnLine = new ArrayList<>();
     private String equationOfLine;
     private String generalEquationOfLine;
@@ -90,11 +90,14 @@ public class Line2D {
         return res;
     }
 
-    public ArrayList<Point> getUsedPointsOnLine() { return this.pointsOnLine; }
-
     public double distanceFromPoint(Point p) {
         double numerator = Math.abs(this.slope*p.x - p.y + this.y_intercept);
         double denominator = Math.sqrt(this.slope*this.slope + 1);
         return numerator / denominator;
     }
+
+    public ArrayList<Point> getUsedPointsOnLine() { return this.pointsOnLine; }
+    public double getSlope() { return this.slope; }
+    public double getX_intercept() { return this.x_intercept; }
+    public double getY_intercept() { return this.y_intercept; }
 }

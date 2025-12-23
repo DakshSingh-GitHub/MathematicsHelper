@@ -138,26 +138,26 @@ public class Circle {
             if (d > this.radius) {
                 return intersectionPoints;
             } else if (d == this.radius) {
-                double m = line.slope;
+                double m = line.getSlope();
                 double x0 = this.center.x;
                 double y0 = this.center.y;
-                double x_intersect = (m*(y0 - line.y_intercept) + x0) / (m*m + 1);
-                double y_intersect = (m*m*y0 + m*x0 + line.y_intercept) / (m*m + 1);
+                double x_intersect = (m*(y0 - line.getY_intercept()) + x0) / (m*m + 1);
+                double y_intersect = (m*m*y0 + m*x0 + line.getY_intercept()) / (m*m + 1);
                 intersectionPoints.add(new Point(x_intersect, y_intersect));
                 return intersectionPoints;
             } else {
-                double m = line.slope;
+                double m = line.getSlope();
                 double x0 = this.center.x;
                 double y0 = this.center.y;
                 double A = 1 + m*m;
-                double B = -2*x0 + 2*m*(line.y_intercept - y0);
-                double C = x0*x0 + (line.y_intercept - y0)*(line.y_intercept - y0) - this.radius*this.radius;
+                double B = -2*x0 + 2*m*(line.getY_intercept() - y0);
+                double C = x0*x0 + (line.getY_intercept() - y0)*(line.getY_intercept() - y0) - this.radius*this.radius;
                 double discriminant = B*B - 4*A*C;
                 double sqrt_disc = Math.sqrt(discriminant);
                 double x1 = (-B + sqrt_disc) / (2*A);
-                double y1 = m*x1 + line.y_intercept;
+                double y1 = m*x1 + line.getY_intercept();
                 double x2 = (-B - sqrt_disc) / (2*A);
-                double y2 = m*x2 + line.y_intercept;
+                double y2 = m*x2 + line.getY_intercept();
                 intersectionPoints.add(new Point(x1, y1));
                 intersectionPoints.add(new Point(x2, y2));
                 return intersectionPoints;
