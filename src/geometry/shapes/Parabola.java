@@ -99,10 +99,8 @@ public class Parabola {
         } else System.err.println("Parabola has not been initiated");
     }
 
+    //Returns 0 if point is outside the parabola, 1 if inside, 2 if on the parabola, -1 if paprabola isn't made
     public int checkPositionOfPoint(Point p) {
-        /** 
-         * Returns 0 if point is outside the parabola, 1 if inside, 2 if on the parabola, -1 if paprabola isn't made
-         */
         if (this.isParaboalMade) {
             double x = p.x - this.vertex.x;
             double y = p.y - this.vertex.y;
@@ -117,8 +115,7 @@ public class Parabola {
                 else if (s < 0) return 1;
                 else if (s == 0) return 2;
             } else return -1;
-        } 
-        return -1;
+        } return -1;
     }
 
     public String equationOfTangent(double slope) {
@@ -139,5 +136,6 @@ public class Parabola {
 
     public ArrayList<Point> getUsedPointsOnParabola() { return this.pointsOnParabola; }
     public ArrayList<ArrayList<Point>> getRemovedHeap() { return this.removedHeap; }
+    public void clearRemovedHeap() { this.removedHeap.clear(); }
     public String getEquation() { return this.equation; }
 }

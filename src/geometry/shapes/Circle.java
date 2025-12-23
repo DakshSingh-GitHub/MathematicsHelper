@@ -74,12 +74,12 @@ public class Circle {
         } else { System.out.println("Radius is not given for the circle"); }
     }
 
-    public boolean checkPointOnCircle(Point p) {
-        if (this.isRadiusGiven) {
-            double rad_check = Point.distance(p, this.center);
-            return rad_check == this.radius;
-        } else { return false; }
-    }
+    // public boolean checkPointOnCircle(Point p) {
+    //     if (this.isRadiusGiven) {
+    //         double rad_check = Point.distance(p, this.center);
+    //         return rad_check == this.radius;
+    //     } else { return false; }
+    // }
 
     public double circumference() {
         if (this.isRadiusGiven) {
@@ -111,9 +111,7 @@ public class Circle {
     }
 
     public int checkPositionOfPoint(Point p) {
-        /** 
-         * Returns 0 if point is outside the circle, 1 if inside, 2 if on the circle, -1 if radius is not given.
-         */
+        // Returns 0 if point is outside the circle, 1 if inside, 2 if on the circle, -1 if radius is not given.
         if (this.isRadiusGiven) {
             double rad_check = Point.distance(p, this.center);
             if (rad_check > this.radius) return 0;
