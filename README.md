@@ -160,3 +160,17 @@ Represents a triangle in 2D or 3D space.
 *   `double area()`: Calculates the area of the triangle.
 *   `Point centroid()`: Calculates the centroid of the triangle.
 *   `Point orthocenter3D()`: Calculates the orthocenter of the triangle in 3D space.
+
+### `Parabola`
+
+Represents a parabola in 2D space.
+
+#### Methods:
+*   `Parabola(Point vertex, double a, String type)`: Creates a parabola with a given vertex, 'a' value, and type (`"horizontal"` or `"vertical"`).
+*   `Parabola(Point vertex)`: Creates a parabola with a given vertex but no defined 'a' value or type.
+*   `String generateEquation()`: Generates and returns the equation of the parabola.
+*   `void updateLatusRectum(double a)`: Updates the latus rectum of the parabola.
+*   `void addPointOnParabola(Point point)`: Adds a point to the parabola's definition if it lies on the curve.
+*   `int checkPositionOfPoint(Point p)`: Determines if a point is inside, outside, or on the parabola. Returns `1` for inside, `0` for outside, `2` for on the parabola.
+*   `String equationOfTangent(double slope)`: Returns the equation of a tangent line with a given slope.
+*   `ArrayList<Point> getUsedPointsOnParabola()`: Returns the list of points that have been added to the parabola.
