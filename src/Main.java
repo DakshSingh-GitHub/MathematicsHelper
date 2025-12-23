@@ -6,7 +6,8 @@ public class Main {
         Parabola p = new Parabola(new Point(0, 1), 1, "horizontal");
         p.addPointOnParabola(new Point(1, 3));
         p.addPointOnParabola(new Point(4, 5));
-        p.updateLatusRectum(2);
-        p.getRemovedHeap().forEach(e -> { e.forEach(t -> System.out.println("(" + t.x + ", " + t.y + ")")); });
+        System.out.println(p.checkPositionOfPoint(new Point(1, 2)));
+        // p.updateLatusRectum(2);
+        // p.getRemovedHeap().forEach(e -> { e.forEach(t -> System.out.println("(" + t.x + ", " + t.y + ")")); });
     }
 }

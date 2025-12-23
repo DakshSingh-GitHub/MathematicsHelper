@@ -98,6 +98,28 @@ public class Parabola {
         } else System.err.println("Parabola has not been initiated");
     }
 
+    public int checkPositionOfPoint(Point p) {
+        /** 
+         * Returns 0 if point is outside the parabola, 1 if inside, 2 if on the parabola, -1 if paprabola isn't made
+         */
+        if (this.isParaboalMade) {
+            double x = p.x - this.vertex.x;
+            double y = p.y - this.vertex.y;
+            if (this.type.toLowerCase() == "horizontal") {
+                double s = y*y - this.latus_ractum*x;
+                if (s > 0) return 0;
+                else if (s < 0) return 1;
+                else if (s == 0) return 2;
+            } else if (this.type.toLowerCase() == "vertical") {
+                double s = x*x - this.latus_ractum*y;
+                if (s > 0) return 0;
+                else if (s < 0) return 1;
+                else if (s == 0) return 2;
+            } else return -1;
+        } 
+        return -1;
+    }
+
     public ArrayList<Point> getUsedPointsOnParabola() { return this.pointsOnParabola; }
     public ArrayList<ArrayList<Point>> getRemovedHeap() { return this.removedHeap; }
     public String getEquation() { return this.equation; }
