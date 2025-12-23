@@ -1,20 +1,18 @@
-package geometry.shapes;
+package geometry.base;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import geometry.base.Point;
-
 public class Line2D {
-    Point p1;
+    private Point p1;
     Point p2;
-    double slope;
-    double x_intercept;
-    double y_intercept; 
-    ArrayList<Point> pointsOnLine = new ArrayList<>();
-    String equationOfLine;
-    String generalEquationOfLine;
+    public double slope;
+    public double x_intercept;
+    public double y_intercept; 
+    public ArrayList<Point> pointsOnLine = new ArrayList<>();
+    private String equationOfLine;
+    private String generalEquationOfLine;
 
     public Line2D(Point p1, Point p2) {
         this.p1 = p1;

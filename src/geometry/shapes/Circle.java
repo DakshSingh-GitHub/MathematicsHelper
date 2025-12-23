@@ -1,6 +1,8 @@
 package geometry.shapes;
 
 import java.util.ArrayList;
+
+import geometry.base.Line2D;
 import geometry.base.Point;
 
 public class Circle {

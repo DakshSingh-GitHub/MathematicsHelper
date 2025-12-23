@@ -2,6 +2,7 @@ package geometry.shapes;
 
 import java.util.ArrayList;
 import geometry.base.Point;
+import geometry.base.Line2D;
 
 public class Parabola {
     double a;
@@ -118,6 +119,22 @@ public class Parabola {
             } else return -1;
         } 
         return -1;
+    }
+
+    public String equationOfTangent(double slope) {
+        String eqn = "";
+        if (this.isParaboalMade) {
+            if (this.type.toLowerCase() == "horizontal") {
+                Point intersect = new Point((this.a)/(slope*slope), (2*this.a)/slope);
+                Line2D line = new Line2D(intersect, slope);
+                eqn = line.LineEquations().get("Equation");
+            } else if (this.type.toLowerCase() == "vertical") {
+                Point intersect = new Point((2*this.a)/(slope), (this.a)/(slope*slope));
+                Line2D line = new Line2D(intersect, slope);
+                eqn = line.LineEquations().get("Equation");
+            } else eqn = "N/A";
+        } else { eqn = "N/A"; }
+        return eqn;
     }
 
     public ArrayList<Point> getUsedPointsOnParabola() { return this.pointsOnParabola; }
