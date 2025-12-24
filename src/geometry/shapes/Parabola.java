@@ -134,6 +134,89 @@ public class Parabola {
         return eqn;
     }
 
+    public String equationOfTangent(Point p) {
+        String eqn;
+        if (this.isParaboalMade) {
+            double x_shifted = p.x - this.vertex.x;
+            double y_shifted = p.y - this.vertex.y;
+            boolean onParabola = false;
+            // A small tolerance for floating point comparisons
+            double epsilon = 1e-9;
+
+            if ("horizontal".equalsIgnoreCase(this.type)) {
+                if (Math.abs(y_shifted * y_shifted - this.latus_ractum * x_shifted) < epsilon) {
+                    onParabola = true;
+                }
+            } else if ("vertical".equalsIgnoreCase(this.type)) {
+                if (Math.abs(x_shifted * x_shifted - this.latus_ractum * y_shifted) < epsilon) {
+                    onParabola = true;
+                }
+            }
+
+            if (!onParabola) {
+                return "Point is not on the parabola.";
+            }
+
+            double A, B, C;
+            if ("horizontal".equalsIgnoreCase(this.type)) {
+                // Tangent for (y-k)^2 = 4a(x-h) is (y-k)(y1-k) = 2a((x-h) + (x1-h))
+                // Expanding and rearranging to Ax + By + C = 0 form:
+                // 2ax - (y1-k)y - 2ax1 + 4ah + k*y1 - k*k = 0
+                A = 2 * this.a;
+                B = -(p.y - this.vertex.y);
+                C = -2 * this.a * p.x + 4 * this.a * this.vertex.x + p.y * this.vertex.y - this.vertex.y * this.vertex.y;
+            } else if ("vertical".equalsIgnoreCase(this.type)) {
+                // Tangent for (x-h)^2 = 4a(y-k) is (x-h)(x1-h) = 2a((y-k) + (y1-k))
+                // Expanding and rearranging to Ax + By + C = 0 form:
+                // (x1-h)x - 2ay - x1h + h^2 - 2ay1 + 4ak = 0
+                 A = p.x - this.vertex.x;
+                 B = -2 * this.a;
+                 C = -this.vertex.x * p.x + this.vertex.x * this.vertex.x - 2 * this.a * p.y + 4 * this.a * this.vertex.y;
+            } else {
+                return "N/A";
+            }
+
+            // Build the equation string
+            StringBuilder equationBuilder = new StringBuilder();
+            if (Math.abs(A) > epsilon) {
+                equationBuilder.append(String.format("%.2f", A)).append("x");
+            }
+            if (Math.abs(B) > epsilon) {
+                if (equationBuilder.length() > 0) {
+                     if (B > 0)  {
+                        equationBuilder.append(" + ");
+                     } else {
+                        equationBuilder.append(" - ");
+                     }
+                } else if (B < 0) {
+                    equationBuilder.append("-");
+                }
+                equationBuilder.append(String.format("%.2f", Math.abs(B))).append("y");
+            }
+            if (Math.abs(C) > epsilon) {
+                if (equationBuilder.length() > 0) {
+                    if (C > 0) {
+                        equationBuilder.append(" + ");
+                    } else {
+                        equationBuilder.append(" - ");
+                    }
+                } else if (C < 0) {
+                    equationBuilder.append("-");
+                }
+                equationBuilder.append(String.format("%.2f", Math.abs(C)));
+            }
+            if (equationBuilder.length() == 0) {
+                return "0 = 0";
+            }
+            equationBuilder.append(" = 0");
+            eqn = equationBuilder.toString();
+
+        } else {
+            eqn = "N/A";
+        }
+        return eqn;
+    }
+
     public ArrayList<Point> getUsedPointsOnParabola() { return this.pointsOnParabola; }
     public ArrayList<ArrayList<Point>> getRemovedHeap() { return this.removedHeap; }
     public void clearRemovedHeap() { this.removedHeap.clear(); }
